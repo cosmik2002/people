@@ -65,7 +65,7 @@ Ext.define('PeopleApp.controller.People', {
 	},
     checkEducation: function(field, newValue, oldValue){
 		//debugger;
-		console.log(field+ newValue.Name+ oldValue);
+		//console.log(field+ newValue.Name+ oldValue);
         var store = Ext.widget('peoplelist').getStore();
 			this.selEducation = []; 
 			if(typeof newValue.Name != 'undefined')
