@@ -1,9 +1,5 @@
 <?php
-$host='localhost';
-$db = 'people';
-$username = 'postgres';
-$password = 'postgres';
-$dsn = "pgsql:host=$host;port=5432;dbname=$db;user=$username;password=$password";
+include 'config.php';
 
 header ("Content-Type: text/html; charset=utf-8");
 try{
