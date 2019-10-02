@@ -80,6 +80,8 @@ Ext.define('PeopleApp.controller.People', {
             form   = win.down('form'),
             values = form.getValues(),
             id = form.getRecord().get('id');
+		//debugger;	
+		//var v =	form.down('combobox').getValue();
             values.id=id;
         Ext.Ajax.request({
             url: 'app/data/update.php',
@@ -89,7 +91,7 @@ Ext.define('PeopleApp.controller.People', {
                 if(data.success){
                     var store = Ext.widget('peoplelist').getStore();
                     store.load();
-                    Ext.Msg.alert('Обновление',data.message);
+                    //Ext.Msg.alert('Обновление',data.message);
                 }
                 else{
                     Ext.Msg.alert('Обновление','Не удалось обновить');

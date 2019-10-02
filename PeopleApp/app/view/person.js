@@ -13,6 +13,15 @@ Ext.define('PeopleApp.view.Person', {
                         xtype: 'textfield',
                         name : 'name',
                         fieldLabel: 'Имя'
+                    },
+					{
+                        xtype: 'combobox',
+                        name : 'education_id',
+                        fieldLabel: 'Образование',
+						store: 'educationstore',
+						valueField: 'id',  
+						displayField: 'education'
+						
                     }]
             }];
         this.dockedItems=[{
