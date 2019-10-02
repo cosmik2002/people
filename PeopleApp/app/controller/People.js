@@ -38,7 +38,9 @@ Ext.define('PeopleApp.controller.People', {
 		var selCities = this.selCities, selEducation = this.selEducation;
 		store.filterBy(function(record){
 			//debugger;
-			var cities = record.get('cities').split(",");
+			var cities = [];
+			if(record.get('cities') != null)
+				cities = record.get('cities').split(",");
 			
 			var ct = selCities.filter(function(item){
 				if(cities.indexOf(item)!=-1)
@@ -80,8 +82,6 @@ Ext.define('PeopleApp.controller.People', {
             form   = win.down('form'),
             values = form.getValues(),
             id = form.getRecord().get('id');
-		//debugger;	
-		//var v =	form.down('combobox').getValue();
             values.id=id;
         Ext.Ajax.request({
             url: 'app/data/update.php',
@@ -124,10 +124,12 @@ Ext.define('PeopleApp.controller.People', {
     deletePerson: function(button) {
         var win    = button.up('window'),
             form   = win.down('form'),
-            id = form.getRecord().get('id');
+            values = form.getValues();
+			id = form.getRecord().get('id');
+            values.id = id;
         Ext.Ajax.request({
             url: 'app/data/delete.php',
-            params: {id:id},
+            params: values,
             success: function(response){
                 var data=Ext.decode(response.responseText);
                 if(data.success){
@@ -135,7 +137,8 @@ Ext.define('PeopleApp.controller.People', {
                     var store = Ext.widget('peoplelist').getStore();
                     var record = store.getById(id);
                     store.remove(record);
-                    form.getForm.reset();
+                    form.getForm().reset();
+					win.close();
                 }
                 else{
                     Ext.Msg.alert('Удаление','Не удалось удалить');
@@ -143,8 +146,8 @@ Ext.define('PeopleApp.controller.People', {
             }
         });
     },
-    clearForm: function(grid, record) {
-        var view = Ext.widget('personwindow');
+    clearForm: function(button, event) {
+        var view = button.up('window');
         view.down('form').getForm().reset();
     },
     editPerson: function(grid, record) {

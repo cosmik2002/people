@@ -11,7 +11,7 @@ Ext.define('PeopleApp.model.Person', {
         url: 'app/data/people.php',
         reader: {
             type: 'json',
-            root: 'people',
+            rootProperty: 'people',
             successProperty: 'success'
         }
     }

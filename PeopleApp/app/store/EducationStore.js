@@ -8,7 +8,7 @@ Ext.define('PeopleApp.store.EducationStore', {
         url: 'app/data/education.php',
         reader: {
             type: 'json',
-            root: 'education',
+            rootProperty: 'education',
             successProperty: 'success'
         }
     }

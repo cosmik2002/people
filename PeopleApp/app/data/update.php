@@ -8,12 +8,10 @@ try{
  if($conn){
  if($id){
 	$stmt = $conn->query("update people set education_id = $education_id where id=$id");
- }	
- $stmt->execute();
- 
- //$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
- $results["people"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
- $results["success"] = true;
+	//$stmt->execute();
+	$results["success"] = true;
+ }else	
+	$results["success"] = false;
  
  $json = json_encode($results);
  echo $json;

@@ -8,7 +8,7 @@ Ext.define('PeopleApp.store.CityStore', {
         url: 'app/data/cities.php',
         reader: {
             type: 'json',
-            root: 'cities',
+            rootProperty: 'cities',
             successProperty: 'success'
         }
     }
